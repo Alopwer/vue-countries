@@ -4,7 +4,8 @@ import {
   GET_COUNTRIES,
   GET_COUNTRIES_ERR,
   GET_COUNTRY,
-  GET_COUNTRY_BY_ID
+  GET_COUNTRY_BY_ID,
+  UPDATE_REGION
 } from './mutation-types'
 import Axios from 'axios'
 
@@ -15,7 +16,8 @@ export default new Vuex.Store({
     countries: [],
     err: false,
     country: null,
-    countryName: ''
+    countryName: '',
+    region: ''
   },
   mutations: {
     [GET_COUNTRIES](state, countries) {
@@ -28,10 +30,13 @@ export default new Vuex.Store({
       state.country = Object.assign({}, country)
     },
     [GET_COUNTRY](state, id) {
-      state.country = state.countries.find(c => c.alpha2Code == id)
+      state.country = state.countries.find(c => c.alpha3Code == id)
     },
     updateInput(state, value) {
       state.countryName = value
+    },
+    [UPDATE_REGION](state, region) {
+      state.region = region
     }
   },
   actions: {
@@ -46,13 +51,25 @@ export default new Vuex.Store({
     },
     getCountry({ commit }, id) {
       commit(GET_COUNTRY, id)
+    },
+    updateRegion({ commit }, region) {
+      if (region === 'All') region = ''
+      commit(UPDATE_REGION, region)
     }
   },
   getters: {
     countries(state) {
-      const regex = RegExp(state.countryName, 'i')
-      return state.countryName 
-        ? state.countries.filter(c => regex.test(c.name)) 
+      const regex = RegExp(`^${state.countryName}`, 'i')
+      return state.countryName || state.region
+        ? state.countries.filter(c => {
+          if (state.countryName && state.region) {
+            return regex.test(c.name) && c.region === state.region
+          } else if (state.countryName) {
+            return regex.test(c.name)
+          } else if (state.region) {
+            return c.region === state.region
+          }
+        }) 
         : state.countries
     }
   },

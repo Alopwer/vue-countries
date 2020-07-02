@@ -11,7 +11,7 @@ const routes = [
     component: CountryList
   },
   {
-    path: '/b/:id',
+    path: '/c/:id',
     name: 'c',
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/CountryItem.vue')
