@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div>
+    <div class="container">
       <country-searchbar />
       <country-filterbar />
-      <div v-show="countries.length">
+      <div v-show="countries.length" class="countries">
         <country-list-item 
           v-for="country in countries" 
           :key="country.alpha2Code" 
@@ -40,5 +40,10 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .countries {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h3>Search for a country</h3>
     <input :value="countryName" @input="updateInput"/>
   </div>
 </template>
@@ -20,5 +21,23 @@ import { mapState } from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-
+  div {
+    margin: 50px auto;
+    width: 100%;
+    text-align: center;
+  }
+  h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: normal;
+  }
+  input {
+    width: 80%;
+    outline: none;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.1rem;
+  }
 </style>

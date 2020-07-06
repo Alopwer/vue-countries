@@ -33,5 +33,14 @@ import { mapActions } from 'vuex'
 </script>
 
 <style lang="scss" scoped>
-
+  select {
+    outline: none;
+    font-size: 1rem;
+  }
+  label {
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
+  }
 </style>

@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <router-link :to="{ name: '/' }">
-      Home
-    </router-link>
+  <div class="header">
+    <div class="container">
+      <router-link :to="{ name: '/' }" class="">
+        Home
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -13,5 +15,13 @@
 </script>
 
 <style lang="scss" scoped>
-
+  .header {
+    background: black;
+  }
+  a {
+    font-size: 1.8rem;
+    color: white;
+    margin: 4px 0;
+    display: inline-block;
+  }
 </style>
